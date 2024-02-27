@@ -1,2 +1,24 @@
 # ibm_fil_rouge_tomjerry
+
 Site vitrine pour un agriculteur concentré sur sa production d'électricité
+
+## npm run dev
+
+### TO DO:
+
+- relier la data avec les graphs
+- finir les actions du site
+- mettre les règles de responsivité
+- générer un logo
+- générer un texte de présentation de l'entreprise
+- gérer le contenu en ajax
+
+### DOING :
+
+- construire la data
+- refactor
+
+### Done :
+
+- il manque le bouton générer dans les pages où il y a des select avec otpions.
+- mockup ajouter les évènements du site
