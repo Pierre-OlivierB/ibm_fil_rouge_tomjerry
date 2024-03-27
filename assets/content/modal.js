@@ -14,7 +14,7 @@ const modal = document.getElementById("myModal");
 // Get the <span> element that closes the modal
 const span = document.getElementById("closeModal");
 const modalContent = document.querySelector(".modal-content");
-console.log(modalContent);
+// console.log(modalContent);
 // When the user clicks on the button, open the modal
 function addModal() {
   // modal.style.display = "block";

@@ -312,7 +312,7 @@ footer {
   );
 }
 .bg_img_home {
-  background: top/cover no-repeat url("./farm.png");
+  background: top/cover no-repeat url("../assets/img/farm.png");
 }
 
 /* !---------------------------- */

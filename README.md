@@ -17,6 +17,7 @@ Site vitrine pour un agriculteur concentré sur sa production d'électricité
 
 - construire la data
 - refactor
+- 01/03/24 : test_2.js
 
 ### Done :
 

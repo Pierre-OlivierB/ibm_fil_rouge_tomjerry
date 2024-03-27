@@ -1,66 +1,197 @@
 // import Chart from "@toast-ui/chart";
+// var pdt;
+// *init selects choices and first url shawn
+var choice = { apport: "" };
+var urlpdt = "http://localhost:3001/pommedeterre";
+// *change data and front if choices send with click button
+document.getElementById("form_chosen").addEventListener("submit", (e) => {
+  e.preventDefault();
+  // console.log(e);
+  var test = {};
+  for (let i = 0; i < e.target.length - 1; i++) {
+    // console.log(e.target[i].id);
+    test[`${e.target[i].id}`] = `${e.target[i].value}`;
+  }
+  // console.log(test);
+  choice = test;
+  switch (choice.apport) {
+    case "with":
+      // *init the target for front
+      document.getElementById("chart_pie").innerHTML = ``;
+      urlpdt = "http://localhost:3001/pommedeterre";
+      const request2 = new Request(urlpdt, {
+        method: "GET",
+      });
+      request_ingredient(request2);
+      break;
+    case "out":
+      document.getElementById("chart_pie").innerHTML = ``;
+      urlpdt = "http://localhost:3001/pommedeterresans";
+      const request3 = new Request(urlpdt, {
+        method: "GET",
+      });
+      request_ingredient(request3);
+      break;
+    default:
+      document.getElementById("chart_pie").innerHTML = ``;
+      urlpdt = "http://localhost:3001/pommedeterre";
+      const request1 = new Request(urlpdt, {
+        method: "GET",
+      });
+      request_ingredient(request1);
+      break;
+  }
+});
 
-const data = {
-  categories: ["Browser"],
-  series: [
-    {
-      name: "Chrome",
-      data: 46.02,
-    },
-    {
-      name: "IE",
-      data: 20.47,
-    },
-    {
-      name: "Firefox",
-      data: 17.71,
-    },
-    {
-      name: "Safari",
-      data: 5.45,
-    },
-    {
-      name: "Opera",
-      data: 3.1,
-    },
-    {
-      name: "Etc",
-      data: 7.25,
-    },
-  ],
-};
+// *---------------------------------
+// !---------------------------------
+// const request2 = new Request(urlpdt, {
+//   method: "GET",
+// });
+// *first page / first choice
+const initialisation = new Request(urlpdt, {
+  method: "GET",
+});
+const request_ingredient = (e) =>
+  fetch(e)
+    .then((response) => {
+      if (response.status === 200) {
+        let infos = response.json();
+        // console.log(infos);
+        return infos;
+      } else {
+        throw new Error("Something went wrong on API server!");
+      }
+    })
+    .then((datas) => {
+      console.log(datas);
+      const data = {
+        categories: ["Pomme de terre"],
+        series: datas,
+      };
 
-const el = document.getElementById("chart_pie");
-const options = {
-  theme: {
-    chart: {
-      fontFamily: "Verdana",
-      backgroundColor: "rgba(0, 0, 0, 0)",
-    },
-  },
-  chart: {
-    title: "Pie Chart",
-    height: "auto",
-    width: "auto",
-  },
-  responsive: {
-    animation: { duration: 100 },
-  },
-  series: {
-    dataLabels: {
-      visible: true,
-      anchor: "outer",
-      pieSeriesName: {
-        visible: true,
-      },
-    },
-  },
-  exportMenu: {
-    visible: false,
-  },
-};
+      const el = document.getElementById("chart_pie");
+      const options = {
+        theme: {
+          chart: {
+            fontFamily: "Verdana",
+            backgroundColor: "rgba(0, 0, 0, 0)",
+          },
+        },
+        chart: {
+          title: "Pie Chart",
+          height: "auto",
+          width: "auto",
+        },
+        responsive: {
+          animation: { duration: 100 },
+        },
+        series: {
+          dataLabels: {
+            visible: true,
+            anchor: "outer",
+            pieSeriesName: {
+              visible: true,
+            },
+          },
+        },
+        exportMenu: {
+          visible: false,
+        },
+      };
 
-const chart = toastui.Chart.pieChart({ el, data, options });
+      const chart = toastui.Chart.pieChart({ el, data, options });
+    });
+// *----------------------------------------------------
+// *initialisation
+request_ingredient(initialisation);
+// request_ingredient();
+// switch (choice.apport) {
+//   case "with":
+//     urlpdt = "http://localhost:3001/pommedeterre";
+//     const request2 = new Request(urlpdt, {
+//       method: "GET",
+//     });
+//     request_ingredient(request2);
+//     break;
+//   case "out":
+//     urlpdt = "http://localhost:3001/pommedeterresans";
+//     const request3 = new Request(urlpdt, {
+//       method: "GET",
+//     });
+//     request_ingredient(request3);
+//     break;
+//   default:
+//     urlpdt = "http://localhost:3001/pommedeterre";
+//     const request1 = new Request(urlpdt, {
+//       method: "GET",
+//     });
+//     request_ingredient(request1);
+//     break;
+// }
+// .then(() => console.log(pdt));
+
+// const data = {
+//   categories: ["Browser"],
+//   series: [
+//     {
+//       name: "Chrome",
+//       data: 46.02,
+//     },
+//     {
+//       name: "IE",
+//       data: 20.47,
+//     },
+//     {
+//       name: "Firefox",
+//       data: 17.71,
+//     },
+//     {
+//       name: "Safari",
+//       data: 5.45,
+//     },
+//     {
+//       name: "Opera",
+//       data: 3.1,
+//     },
+//     {
+//       name: "Etc",
+//       data: 7.25,
+//     },
+//   ],
+// };
+
+// const el = document.getElementById("chart_pie");
+// const options = {
+//   theme: {
+//     chart: {
+//       fontFamily: "Verdana",
+//       backgroundColor: "rgba(0, 0, 0, 0)",
+//     },
+//   },
+//   chart: {
+//     title: "Pie Chart",
+//     height: "auto",
+//     width: "auto",
+//   },
+//   responsive: {
+//     animation: { duration: 100 },
+//   },
+//   series: {
+//     dataLabels: {
+//       visible: true,
+//       anchor: "outer",
+//       pieSeriesName: {
+//         visible: true,
+//       },
+//     },
+//   },
+//   exportMenu: {
+//     visible: false,
+//   },
+// };
+
+// const chart = toastui.Chart.pieChart({ el, data, options });
 // * https://nhn.github.io/tui.chart/latest/tutorial-example09-11-pie-chart-visible-data
 // const el = document.getElementById("chart_pie");
 // // console.log(el);
@@ -132,7 +263,7 @@ const options2 = {
 const el2 = document.getElementById("chart_pie2");
 const el3 = document.getElementById("chart_pie3");
 const el4 = document.getElementById("chart_pie4");
-console.log(el2, el3, el4);
+// console.log(el2, el3, el4);
 
 const chart2 = toastui.Chart.pieChart({
   el: el2,
