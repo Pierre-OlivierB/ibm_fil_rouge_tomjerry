@@ -12,6 +12,7 @@ Site vitrine pour un agriculteur concentré sur sa production d'électricité
 - générer un logo
 - générer un texte de présentation de l'entreprise
 - gérer le contenu en ajax
+- au choix garder le titre en cours au cas où la personne ne change pas de target (creales, pomme de terre)
 
 ### DOING :
 
